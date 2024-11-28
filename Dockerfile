@@ -1,6 +1,6 @@
 # syntax = docker/dockerfile:1.10
 
-FROM docker.io/node:22-slim AS assets
+FROM docker.io/node:22-slim@sha256:4b44c32c9f3118d60977d0dde5f758f63c4f9eac8ddee4275277239ec600950f AS assets
 
 ENV NODE_ENV=production
 ENV YARN_CACHE_FOLDER=/cache/yarn
@@ -23,7 +23,7 @@ RUN <<EOF
 EOF
 
 
-FROM docker.io/ruby:3.3.6-slim-bullseye AS build
+FROM docker.io/ruby:3.3.6-slim-bullseye@sha256:8f8440417c25eefc9f34b09a1a04841c7ec27a4ad825cd6d44da0bb48076842b AS build
 
 ENV RAILS_ENV=production
 ENV RAILS_GROUPS=assets
@@ -58,7 +58,7 @@ RUN <<EOF
 EOF
 
 
-FROM docker.io/ruby:3.3.6-slim-bullseye
+FROM docker.io/ruby:3.3.6-slim-bullseye@sha256:8f8440417c25eefc9f34b09a1a04841c7ec27a4ad825cd6d44da0bb48076842b
 
 ENV RAILS_ENV=production
 
